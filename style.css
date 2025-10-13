@@ -1,0 +1,48 @@
+:root{ --bg:#0f1724; --card:#0b1220; --accent:#7c3aed; --muted:#94a3b8; --panel:#111827; color-scheme:dark }
+html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Helvetica,Arial; background:linear-gradient(180deg,#071029 0%, #07172a 60%); color:#e6eef8}
+.container{max-width:1000px;margin:28px auto;padding:20px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+h1{font-size:20px;margin:0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--panel);border-radius:12px;padding:14px;box-shadow:0 6px 18px rgba(2,6,23,.6)}
+label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+input[type=number], input[type=text], textarea{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+.row{display:flex;gap:8px}
+button{padding:8px 12px;border-radius:10px;border:0;background:var(--accent);color:white;cursor:pointer}
+button.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+.board{display:flex;gap:12px;align-items:flex-start}
+.col{flex:1;transition:box-shadow .18s ease, transform .12s ease;padding:12px;border-radius:10px}
+.cards{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:8px 10px;border-radius:8px;background:var(--card);cursor:pointer;border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column;align-items:center;min-width:56px}
+.chip img{max-width:56px;max-height:40px;border-radius:6px;object-fit:cover;margin-bottom:6px}
+.chip .val{font-weight:600}
+.chip.disabled{opacity:.35;cursor:not-allowed}
+.status{margin-bottom:8px}
+.big{font-size:28px;font-weight:600}
+footer{margin-top:18px;font-size:13px;color:var(--muted)}
+pre{background:#061322;padding:10px;border-radius:8px;overflow:auto}
+
+/* Active player's column glow (light) */
+.col.active{
+  box-shadow: 0 12px 30px rgba(124,58,237,0.28), 0 0 40px rgba(124,58,237,0.12) inset;
+  transform: translateY(-4px);
+}
+
+/* Inactive slightly dim */
+.col.inactive{
+  box-shadow: 0 6px 14px rgba(0,0,0,0.4) inset;
+  transform: translateY(0);
+}
+
+/* When an individual chip belongs to active player make it glow faintly */
+.col.active .chip{
+  box-shadow: 0 6px 18px rgba(124,58,237,0.08);
+}
+
+.preview-thumb{display:block;width:56px;height:40px;border-radius:6px;object-fit:cover;margin-top:6px}
+
+.form-row{display:flex;gap:8px;align-items:center;margin-top:8px}
+.form-row input[type=file]{flex:1}
+.form-row input[type=number]{width:110px}
+
+.small-muted{font-size:12px;color:var(--muted);margin-top:8px}
