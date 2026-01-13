@@ -3,50 +3,63 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kaardimäng (Python → JS)</title>
+  <title>Kaardimäng</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="logic.js" defer></script>
+  <script type="module" src="./js/main.js"></script>
+  <!--
+  <script type="module" src="./js/main.js"></script>
+  <script type="module" src="./js/gameLogic.js"></script>
+  <script type="module" src="./js/gameState.js"></script>
+  <script type="module" src="./js/uiRenderer.js"></script>
+  <script type="module" src="./js/uiSetup.js"></script>
+  -->
 </head>
 <body>
-  <div class="container">
+  <div class = "container">
     <header>
-      <h1>Kaardimäng — pildid & helendus</h1>
-      <div style="font-size:13px;color:var(--muted)">Keele: Eesti</div>
+      <h1>Kaardimäng lähene arvule</h1>
     </header>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Seadistused</h3>
+    <div class = "grid">
+      <div class = "setup">
+        <div class="card">
+          <h3>Muudetavad reeglid</h3>
+
         <div style="margin-top:8px">
-          <label>Algne skoor (vaikimisi -1)</label>
+          <label>Algne skoor</label>
           <input id="initialScore" type="number" value="-1">
         </div>
+
         <div style="margin-top:8px">
-          <label>Algne inRoundMod (sissekirjuta täisarv)</label>
+          <label>Algne liitintress täisarvuna</label>
           <input id="initialInRoundMod" type="number" value="0">
         </div>
+
         <div style="margin-top:8px">
-          <label>Kaartide arv mängija 1</label>
+          <label>Kaartide arv 1. mängijal</label>
           <input id="numP1" type="number" min="0" value="3">
         </div>
+
         <div style="margin-top:8px">
-          <label>Kaartide arv mängija 2</label>
+          <label>Kaartide arv 2. mängijal</label>
           <input id="numP2" type="number" min="0" value="3">
         </div>
+
         <div style="margin-top:8px">
-          <label>Sobilikud lõppskoorid (komaga eraldatud, nt 5,10,15)</label>
+          <label>Sobilikud lõppskoorid komaga eraldatult</label>
           <input id="desiredScores" type="text" value="5,10,15">
         </div>
 
-        <div style="margin-top:12px;display:flex;gap:8px">
+        <div style="margin-top:12px;display:flex;gap:8px;">
           <button id="setupBtn">Loo mäng</button>
-          <button id="randomStartBtn" class="secondary">Alusta juhuslikult</button>
         </div>
 
-        <div style="margin-top:12px;color:var(--muted)">Sisesta kaartide väärtused ja (vabatahtlik) pilt iga kaardi jaoks. Pilt kuvab nupu peal.</div>
-
-        <div id="cardsInputs" style="margin-top:12px"></div>
-
+        </div>
+        
+        <div class="card">
+          <div style="margin-top:24px;">Sisesta kaartide väärtused ja soovi korral pilt iga kaardi jaoks.</div>
+          <div id="cardsInputs" style="margin-top:12px"></div>
+        </div>
       </div>
 
       <div class="card">
@@ -64,6 +77,7 @@
             <div>Kaardid:</div>
             <div id="p1Cards" class="cards" style="margin-top:8px"></div>
           </div>
+
           <div id="colP2" class="col card">
             <h4>Mängija 2</h4>
             <div>Kaardid:</div>
@@ -72,8 +86,8 @@
         </div>
 
         <div style="margin-top:12px">
-          <h4>Ajalugu</h4>
-          <div id="history" style="min-height:36px;color:var(--muted)">---</div>
+          <h4>Mängu käik</h4>
+          <div id="gameHistory" style="min-height:36px;color:var(--muted)">---</div>
         </div>
 
         <div style="margin-top:12px">
@@ -84,7 +98,11 @@
     </div>
 
     <footer>
-      Mäng reeglid: igal käigul mängija valib ühe oma kaardi (võib olla 0), skoor värskendatakse: currentScore += inRoundMod + playedCard ja seejärel inRoundMod += playedCard. Kui currentScore vastab ühele soovitud lõppskoorile, võidab aktiivne mängija.
+      Mängu reeglid: igal käigul mängija valib ühe oma kaardi või jätab käigu vahele 0 kaarti kasutades.
+      Alternatiivselt võib mängija igal hetkel tulevastest käikudest loobuda ja loota, et lõpetamise hetkel oleva skoorist lähemale teine mängija ei jõua
+      skoor arvutatakse iga käigu järel järgneva valemiga: 
+      currentScore += inRoundMod + playedCard ja seejärel inRoundMod += playedCard 
+      Kui hetke skoor vastab ühele soovitud lõppskoorile, võidab selleni esimesena jõudnud mängija.
     </footer>
   </div>
 </body>
