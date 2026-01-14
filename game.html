@@ -25,73 +25,116 @@
         <div class="card">
           <h3>Muudetavad reeglid</h3>
 
-        <div style="margin-top:8px">
+        <div class="form-group">
           <label>Algne skoor</label>
           <input id="initialScore" type="number" value="-1">
         </div>
 
-        <div style="margin-top:8px">
+        <div class="form-group">
           <label>Algne liitintress täisarvuna</label>
           <input id="initialInRoundMod" type="number" value="0">
         </div>
 
-        <div style="margin-top:8px">
+        <div class="form-group">
           <label>Kaartide arv 1. mängijal</label>
-          <input id="numP1" type="number" min="0" value="3">
+          <input id="numberOfCardsP1" type="number" min="0" value="3">
         </div>
 
-        <div style="margin-top:8px">
+        <div class="form-group">
           <label>Kaartide arv 2. mängijal</label>
-          <input id="numP2" type="number" min="0" value="3">
+          <input id="numberOfCardsP2" type="number" min="0" value="3">
         </div>
 
-        <div style="margin-top:8px">
+        <div class="form-group">
           <label>Sobilikud lõppskoorid komaga eraldatult</label>
           <input id="desiredScores" type="text" value="5,10,15">
         </div>
 
-        <div style="margin-top:12px;display:flex;gap:8px;">
-          <button id="setupBtn">Loo mäng</button>
+        <div class="button-row">
+          <button id="setupButton">Loo mäng</button>
         </div>
 
-        </div>
+      </div>
         
         <div class="card">
-          <div style="margin-top:24px;">Sisesta kaartide väärtused ja soovi korral pilt iga kaardi jaoks.</div>
-          <div id="cardsInputs" style="margin-top:12px"></div>
+
+          <div class="info-text">
+            Sisesta kaartide väärtused ja soovi korral pilt iga kaardi jaoks.
+          </div>
+
+          <div id="cardsInputs" class="inputs-container">
+            <div class="form-row">
+              <strong>Mängija 1 0-kaart (korduv)</strong>
+
+              <input 
+                type="file" 
+                accept="image/*" 
+                data-player="p1-zero" 
+                class="zero-card-input"
+              >
+
+              <img class="preview-thumb hidden">
+            </div>
+
+            <div class="spacer-sm"></div>
+
+            <strong>Mängija 1 kaardid</strong>
+            <div id="p1Cards"></div>
+
+            <div class="spacer-md"></div>
+
+            <div class="form-row">
+              <strong>Mängija 2 0-kaart (korduv)</strong>
+
+              <input 
+                type="file" 
+                accept="image/*" 
+                data-player="p2-zero" 
+                class="zero-card-input"
+              >
+
+              <img class="preview-thumb hidden">
+            </div>
+
+            <div class="spacer-sm"></div>
+
+            <strong>Mängija 2 kaardid</strong>
+            <div id="p2Cards"></div>
+          </div>
         </div>
       </div>
 
       <div class="card">
         <h3>Mängulaua info</h3>
+
         <div class="status">
           <div>Praegune skoor: <span id="currentScore">-</span></div>
           <div>inRoundMod: <span id="currentInRoundMod">-</span></div>
           <div>Aktivne mängija: <span id="activePlayer">-</span></div>
-          <div>Algas mängija: <span id="startingPlayer">-</span></div>
+          <div>Alustanud mängija: <span id="startingPlayer">-</span></div>
         </div>
 
         <div class="board">
-          <div id="colP1" class="col card">
+          <div id="columnP1" class="column card">
             <h4>Mängija 1</h4>
             <div>Kaardid:</div>
-            <div id="p1Cards" class="cards" style="margin-top:8px"></div>
+            <div id="p1Cards" class="cards cards-top"></div>
           </div>
 
-          <div id="colP2" class="col card">
+          <div id="columnP2" class="column card">
             <h4>Mängija 2</h4>
             <div>Kaardid:</div>
-            <div id="p2Cards" class="cards" style="margin-top:8px"></div>
+            <div id="p2Cards" class="cards cards-top"></div>
           </div>
         </div>
 
-        <div style="margin-top:12px">
+        <div class="section">
           <h4>Mängu käik</h4>
-          <div id="gameHistory" style="min-height:36px;color:var(--muted)">---</div>
+          <div id="gameHistory" class="game-history">---</div>
         </div>
 
         <div style="margin-top:12px">
-          <button id="resetBtn" class="secondary">Reset</button>
+          <button id="resetButton" class="secondary">Reset</button>
         </div>
 
       </div>
